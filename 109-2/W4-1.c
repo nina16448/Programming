@@ -3,8 +3,7 @@
 int Calculation(int n, int type[], int integers[], char symbols[], int begin, int end);
 int expr_evaluation( int n, int type[], int integers[], char symbols[] );
 
-int expr_evaluation( int n, int type[], int integers[], char symbols[] ){
-    
+int expr_evaluation( int n, int type[], int integers[], char symbols[] ){ 
     return Calculation(n, type, integers, symbols, 0, n - 1);
 }
 
