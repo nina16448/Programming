@@ -116,6 +116,8 @@ node *list_delete(node *HEAD, node *POS){
     next -> PREV = prev;
     return HEAD;
 }
+
+
 /*
 node *list_iterate(node *POS, int k);
 node *list_search(node *POS, int val);
