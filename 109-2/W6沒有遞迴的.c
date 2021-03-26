@@ -13,14 +13,11 @@ struct nd
 node *list_iterate(node *POS, int k){
     if(POS == NULL) return NULL;
 
-    if(k == 0) return POS;
-
     while(k > 0){
         if(POS -> NEXT == NULL) return NULL;
         POS = POS -> NEXT;
         k--;
     }
-
     while(k < 0){
         if(POS -> PREV == NULL) return NULL;
         POS = POS -> PREV;
