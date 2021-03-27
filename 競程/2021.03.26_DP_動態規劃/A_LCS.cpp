@@ -12,7 +12,6 @@ int DP(int x, int y){
         else
             table[x][y] = max(DP(x - 1, y), DP(x, y - 1));
     }
-
     return table[x][y];
 }
 
@@ -23,8 +22,6 @@ int main(){
     for(int i = 0; i < 2000; i++)
         for(int j = 0; j < 2000; j ++)
             table[i][j] = -1;
-    
-    
 
     cout << DP(s.size(), t.size()) << "\n";
 
