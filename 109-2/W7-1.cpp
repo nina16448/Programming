@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
-int arr[20000];
+int arr[2000000];
 int n, m, rec, l, r;
 
 int main(){
