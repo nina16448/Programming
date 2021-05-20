@@ -16,12 +16,11 @@ int main(){
     Mat img2;
 
     img.copyTo(img2);
-    for(double t = 0; t <= 2 * pi; t += 0.01){
+    for(double t = 0; t <=  20 * pi; t += 0.01)
         circle(img2, Point(250 + a * sin(t), 250 + b * cos(c * t)), 1, Scalar(0, 0, 0), -1);
 
-        imshow("windows", img2);
-        waitKey(1);
-    }
+    imshow("windows", img2);
+    waitKey(0);
 
     int num = 1;
 
@@ -31,13 +30,13 @@ int main(){
 
         if(rec == 61){
             num++;
-            for(double t = 0; t <= 2 * pi; t += 0.0001)
+            for(double t = 0; t <= 20 * pi; t += 0.0001)
                 circle(img2, Point(250 + a * sin(t) * num, 250 + b * cos(c * t) * num), 1, Scalar(0, 0, 0), -1);
         }
 
         if(rec == 45){
             num--;
-            for(double t = 0; t <= 2 * pi; t += 0.0001)
+            for(double t = 0; t <= 20 * pi; t += 0.0001)
                 circle(img2, Point(250 + a * sin(t) * num, 250 + b * cos(c * t) * num), 1, Scalar(0, 0, 0), -1);
         }
 
