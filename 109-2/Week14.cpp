@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-#include <opencv2/opencv.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
 using namespace cv;
 using namespace std;
 #define ID first
@@ -14,8 +11,7 @@ vector <pair <lint, pair <lint, lint> > > U, L;
 vector <pair <lint, pair <lint, lint> > > point;
 pair <lint, pair <lint, lint> > rec;
 lint Cross_Product(lint x1, lint y1, lint x2, lint y2);
-Mat img(500, 500, CV_8UC3, Scalar(255,255,255));
-Mat img2;
+
 
 
 bool cmp(pair <lint, pair <lint, lint> > A, pair <lint, pair <lint, lint> > B){
@@ -35,51 +31,15 @@ void Upper_Hull(){
             p = U[index];
             pp = U[index - 1];
 
-            circle(img, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(255, 255, 0), -1);
-            img.copyTo(img2);
-            imshow("windows", img2);
-            waitKey(0);
-
-            circle(img2, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            line(img2, Point(250 + p.x * 2, 250 - p.y * 2), Point(250 + pp.x * 2, 250 - pp.y * 2), Scalar(255,255,0), 2);
-            circle(img2, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            circle(img2, Point(250 + point[i].x * 2, 250 + -point[i].y * 2), 2, Scalar(255, 255, 0), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            line(img2, Point(250 + p.x * 2, 250 - p.y * 2), Point(250 + point[i].x * 2, 250 - point[i].y * 2), Scalar(255,255,0), 2);
-            circle(img2, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            if(Cross_Product(p.x - pp.x, p.y - pp.y, point[i].x - p.x, point[i].y - p.y) >= 0){
+            if(Cross_Product(p.x - pp.x, p.y - pp.y, point[i].x - p.x, point[i].y - p.y) >= 0)
                 U.pop_back();
-            }
-            else{
-                circle(img2, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(255, 255, 0), -1);
-                imshow("windows", img2);
-                waitKey(0);
-                circle(img, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(255, 255, 0), -1);
-
-                line(img, Point(250 + pp.x * 2, 250 - pp.y * 2), Point(250 + p.x * 2, 250 - p.y * 2), Scalar(0,0,0), 2);
-                img.copyTo(img2);
-                imshow("windows", img2);
-                waitKey(0);
+            
+            else
                 break;
-            }
+            
         }
         U.push_back(point[i]);
     }
-    line(img, Point(250 + U[U.size() - 2].x * 2, 250 - U[U.size() - 2].y * 2), Point(250 + point.back().x * 2, 250 - point.back().y * 2), Scalar(0,0,0), 2);
-    img.copyTo(img2);
-    imshow("windows", img2);
-    waitKey(0);
 }
 
 void Lower_Hull(){
@@ -91,49 +51,15 @@ void Lower_Hull(){
             lint index = L.size() - 1;
             p = L[index - 1];
             pp = L[index];
-            circle(img, Point(250 + p.x * 2, 250 + -p.y * 2), 2, Scalar(255, 255, 0), -1);
-            img.copyTo(img2);
-            imshow("windows", img2);
-            waitKey(0);
-
-            circle(img2, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            line(img2, Point(250 + pp.x * 2, 250 - pp.y * 2), Point(250 + p.x * 2, 250 - p.y * 2), Scalar(255,255,0), 2);
-            circle(img2, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            circle(img2, Point(250 + point[i].x * 2, 250 + -point[i].y * 2), 2, Scalar(255, 255, 0), -1);
-            imshow("windows", img2);
-            waitKey(0);
-
-            line(img2, Point(250 + pp.x * 2, 250 - pp.y * 2), Point(250 + point[i].x * 2, 250 - point[i].y * 2), Scalar(255,255,0), 2);
-            circle(img2, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(0, 0, 255), -1);
-            imshow("windows", img2);
-            waitKey(0);
+            
             if(Cross_Product(p.x - pp.x, p.y - pp.y, point[i].x - p.x, point[i].y - p.y) <= 0)
                 L.pop_back();
-            else{
-                circle(img2, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(255, 255, 0), -1);
-                imshow("windows", img2);
-                waitKey(0);
-                circle(img, Point(250 + pp.x * 2, 250 + -pp.y * 2), 2, Scalar(255, 255, 0), -1);
-
-                line(img, Point(250 + pp.x * 2, 250 - pp.y * 2), Point(250 + p.x * 2, 250 - p.y * 2), Scalar(0,0,0), 2);
-                img.copyTo(img2);
-                imshow("windows", img2);
-                waitKey(0);
+            else
                 break;
-            }
+            
         }
         L.push_back(point[i]);
     }
-    line(img, Point(250 + L[L.size() - 2].x * 2, 250 - L[L.size() - 2].y * 2), Point(250 + point.front().x * 2, 250 - point.front().y * 2), Scalar(0,0,0), 2);
-    img.copyTo(img2);
-    imshow("windows", img2);
-    waitKey(0);
 }
 
 lint Cross_Product(lint x1, lint y1, lint x2, lint y2){
@@ -152,15 +78,8 @@ int main(){
     for(lint i = 1; i <= n; i++){
         rec.ID = i;
         cin >> rec.x >> rec.y;
-
-        circle(img, Point(250 + rec.x * 2, 250 + -rec.y * 2), 2, Scalar(0, 0, 0), -1);
-
         point.push_back(rec);
     }
-    img.copyTo(img2);
-
-    imshow("windows", img2);
-    waitKey(0);
 
     if(n == 1){
         cout << "1\n1\n";
