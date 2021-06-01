@@ -24,8 +24,6 @@ void collision(int a, int b){
     ball[b].Vx = ((m2 - m1) * Vx2 + 2 * m1 * Vx1) / (m1 + m2);
     ball[a].Vy = ((m1 - m2) * Vy1 + 2 * m2 * Vy2) / (m1 + m2);
     ball[b].Vy = ((m2 - m1) * Vy2 + 2 * m1 * Vy1) / (m1 + m2);
-//    cout << "ball A : Vx: " << ball[a].Vx << " Vy: " << ball[a].Vy;
-//    cout << "\nball B : Vx: " << ball[b].Vx << " Vy: " << ball[b].Vy;
 }
 
 void judge(){
