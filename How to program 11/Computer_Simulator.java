@@ -47,7 +47,7 @@ public class Computer_Simulator {
         do {
             System.out.printf("%02d ? ", instructionCounter);
             instruction = input.nextInt();
-            if (instruction > 0 && instruction < 10000) {
+            if (instruction >= 0 && instruction < 10000) {
                 memory[instructionCounter] = instruction;
                 instructionCounter++;
             } else if (instruction != -99999) {
